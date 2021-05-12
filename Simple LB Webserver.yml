@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: 2021-05-12
+Description: >-
+  This template creates two Amazon EC2 instances, and an Application Load Balancer.
+Parameters:
+
+Resources:
+  EC2Instance1:
+  EC2Instace2:
+  MySecurityGroup:
+  ApplicationLoadBalancer:
+  ALBListener:
+  ALBTargetGroup:
+Outputs:
