@@ -2,9 +2,33 @@ AWSTemplateFormatVersion: 2021-05-12
 Description: >-
   This template creates two Amazon EC2 instances, and an Application Load Balancer.
 Parameters:
+  KeyName:
+    Description: Name of an existing EC2 Key Pair
+    Type: AWS::EC2::KeyPair::KeyName
+
+  VPC:
+    Type: AWS::EC2::VPC::Id
+    Description: Choose which VPC that the Application Load Balancer should be deployed to
+
+  Subnets:
+    Description: Choose minimum of 2 subnets (2 different availability zones) that Application Load Balancer should be deployed to
+    Type: List<AWS::EC2::Subnet::Id>
 
 Resources:
   EC2Instance1:
+    Type: AWS::EC2::Instance
+    Metadata:
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0de53d8956e8dcf80 # Amazon Linux 2 in N. Virgina
+      Tags:
+        Key: Name
+        Value: Webserver1
+      KeyName: !Ref KeyName
+      SecurityGroups:
+        !Ref MySecurityGroup
+      UserData:
+      
   EC2Instace2:
   MySecurityGroup:
   ApplicationLoadBalancer:
